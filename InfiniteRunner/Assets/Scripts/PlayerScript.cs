@@ -25,9 +25,13 @@ public class PlayerScript : MonoBehaviour {
 				nextCorner = Vector3.forward;
 			}
 		} // works also for screen
-		transform.LookAt (nextCorner);
-		rb.MovePosition (Vector3.MoveTowards (rb.position, rb.position + nextCorner, speed*Time.fixedDeltaTime));
-		Debug.DrawLine (this.transform.position, rb.velocity,Color.red);
+
+		transform.rotation = Quaternion.Lerp (
+			transform.rotation,
+			Quaternion.LookRotation (nextCorner, Vector3.up),
+			Time.fixedDeltaTime
+			);
+		rb.velocity = transform.forward * speed;
 	}
 
 

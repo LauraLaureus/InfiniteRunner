@@ -29,7 +29,7 @@ public class PlayerScript : MonoBehaviour {
 		transform.rotation = Quaternion.Lerp (
 			transform.rotation,
 			Quaternion.LookRotation (nextCorner, Vector3.up),
-			Time.fixedDeltaTime
+			Time.fixedDeltaTime * speed /Mathf.PI
 			);
 		rb.velocity = transform.forward * speed;
 	}
